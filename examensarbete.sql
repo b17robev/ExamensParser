@@ -20,7 +20,7 @@ create table airplanes (
 ) DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 create table airports (
-	airport_id int PRIMARY KEY,
+	airport_id int auto_increment PRIMARY KEY,
     name varchar(255) COLLATE utf8mb4_bin,
     city varchar(255),
     country varchar(255),
