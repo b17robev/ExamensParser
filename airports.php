@@ -33,8 +33,8 @@
         try {
             if($stmt = $conn->prepare($sql)) {
                 $stmt->bind_param("isssssddissssss", $res[0],$res[1],$res[2],$res[3],$res[4],$res[5],$res[6],$res[7],$res[8],$res[9],$res[10],$res[11],$res[12],$res[13],$res[14]);
-                $stmt->execute();
-                if(!$stmt->execute()) {
+                $execute = $stmt->execute();
+                if(!$execute) {
                     echo "Error: " . mysqli_error($conn);
                 }
                 $count++;

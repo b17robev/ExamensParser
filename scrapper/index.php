@@ -2,7 +2,11 @@
     var_dump($_GET);
     var_dump($_POST);
     if(isset($_POST) && !empty($_POST)){
-        if($_POST['show']){
+        if($_POST['index']) {
+            $fp=fopen("indexData.txt","a");
+            fputs ($fp, $_POST['index']);
+            fclose ($fp);
+        } else if($_POST['show']){
             $fp=fopen("showData.txt","a");
             fputs ($fp, $_POST['show']);
             fclose ($fp);
