@@ -1,0 +1,401 @@
+{
+	"info": {
+		"_postman_id": "6e9ba83f-5630-451b-b68a-2d2b2caee5d4",
+		"name": "Airport",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Fetch number of airports",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [],
+					"options": {
+						"urlencoded": {}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/airports?amount=500",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"airports"
+					],
+					"query": [
+						{
+							"key": "amount",
+							"value": "500"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fetch single airport",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "310bdc81-1a00-4a08-8c91-8c6c0b89ff4c",
+						"exec": [
+							"pm.test(\"Can fetch airport\", function() {",
+							"   pm.response.to.have.status(200); ",
+							"     ",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [],
+					"options": {
+						"urlencoded": {}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/airports/{{iteration}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"airports",
+						"{{iteration}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update airport",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "27ae8efc-1bdc-4e4c-8f4a-1fb8cd69d2a7",
+						"exec": [
+							"pm.test(\"Can update airport\", function() {",
+							"   pm.response.to.have.status(200); ",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "{{name}}{{iteration}}",
+							"type": "text"
+						},
+						{
+							"key": "city",
+							"value": "{{city}}{{iteration}}",
+							"type": "text"
+						},
+						{
+							"key": "country",
+							"value": "{{country}}{{iteration}}",
+							"type": "text"
+						},
+						{
+							"key": "iata",
+							"value": "{{iata}}{{iteration}}",
+							"type": "text"
+						},
+						{
+							"key": "icao",
+							"value": "{{icao}}{{iteration}}",
+							"type": "text"
+						},
+						{
+							"key": "latitude",
+							"value": "{{latitude}}{{iteration}}",
+							"type": "text"
+						},
+						{
+							"key": "longitude",
+							"value": "{{longitude}}{{iteration}}",
+							"type": "text"
+						},
+						{
+							"key": "altitude",
+							"value": "{{altitude}}{{iteration}}",
+							"type": "text"
+						},
+						{
+							"key": "timezone",
+							"value": "{{timezone}}{{iteration}}",
+							"type": "text"
+						},
+						{
+							"key": "tz_database_time_zone",
+							"value": "{{tz_database_time_zone}}{{iteration}}",
+							"type": "text"
+						},
+						{
+							"key": "type",
+							"value": "{{type}}{{iteration}}",
+							"type": "text"
+						},
+						{
+							"key": "source",
+							"value": "{{source}}{{iteration}}",
+							"type": "text"
+						},
+						{
+							"key": "location",
+							"value": "{{location}}{{iteration}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/airports/{{iteration}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"airports",
+						"{{iteration}}"
+					],
+					"query": [
+						{
+							"key": "board",
+							"value": "1",
+							"disabled": true
+						},
+						{
+							"key": "status",
+							"value": "1",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete airport",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2d457f13-acbc-4ebf-b903-d7092d0fac20",
+						"exec": [
+							"pm.test(\"Can delete airport\", function() {",
+							"   pm.response.to.have.status(200); ",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "9d7c234c-b435-4bbe-abae-44050a1c6bf6",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [],
+					"options": {
+						"urlencoded": {}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/airports/{{iteration}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"airports",
+						"{{iteration}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create new airport",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f16ca095-f687-4a31-a225-313952ae6789",
+						"exec": [
+							"pm.test(\"Can add airport\", function() {",
+							"   pm.response.to.have.status(200); ",
+							"   ",
+							"   var hiho = parseInt(pm.environment.get(\"iteration\"));",
+							"   pm.environment.set(\"iteration\", hiho + 1);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "80875c51-5e71-4ec9-bae2-83be62869735",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "{{name}}{{iteration}}",
+							"type": "text"
+						},
+						{
+							"key": "city",
+							"value": "{{city}}{{iteration}}",
+							"type": "text"
+						},
+						{
+							"key": "country",
+							"value": "{{country}}{{iteration}}",
+							"type": "text"
+						},
+						{
+							"key": "iata",
+							"value": "{{iata}}{{iteration}}",
+							"type": "text"
+						},
+						{
+							"key": "icao",
+							"value": "{{icao}}{{iteration}}",
+							"type": "text"
+						},
+						{
+							"key": "latitude",
+							"value": "{{latitude}}{{iteration}}",
+							"type": "text"
+						},
+						{
+							"key": "longitude",
+							"value": "{{longitude}}{{iteration}}",
+							"type": "text"
+						},
+						{
+							"key": "altitude",
+							"value": "{{altitude}}{{iteration}}",
+							"type": "text"
+						},
+						{
+							"key": "timezone",
+							"value": "{{timezone}}{{iteration}}",
+							"type": "text"
+						},
+						{
+							"key": "tz_database_time_zone",
+							"value": "{{tz_database_time_zone}}{{iteration}}",
+							"type": "text"
+						},
+						{
+							"key": "type",
+							"value": "{{type}}{{iteration}}",
+							"type": "text"
+						},
+						{
+							"key": "source",
+							"value": "{{source}}{{iteration}}",
+							"type": "text"
+						},
+						{
+							"key": "location",
+							"value": "{{location}}{{iteration}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/airports",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"airports"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
