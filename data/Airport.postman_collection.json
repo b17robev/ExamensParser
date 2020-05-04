@@ -78,7 +78,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8000/airports/{{iteration}}",
+					"raw": "http://localhost:8000/airports/{{airport_id}}",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -86,7 +86,7 @@
 					"port": "8000",
 					"path": [
 						"airports",
-						"{{iteration}}"
+						"{{airport_id}}"
 					]
 				}
 			},
@@ -189,7 +189,7 @@
 					]
 				},
 				"url": {
-					"raw": "http://localhost:8000/airports/{{iteration}}",
+					"raw": "http://localhost:8000/airports/{{airport_id}}",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -197,7 +197,7 @@
 					"port": "8000",
 					"path": [
 						"airports",
-						"{{iteration}}"
+						"{{airport_id}}"
 					],
 					"query": [
 						{
@@ -259,7 +259,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8000/airports/{{iteration}}",
+					"raw": "http://localhost:8000/airports/{{airport_id}}",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -267,7 +267,7 @@
 					"port": "8000",
 					"path": [
 						"airports",
-						"{{iteration}}"
+						"{{airport_id}}"
 					]
 				}
 			},
@@ -282,10 +282,19 @@
 						"id": "f16ca095-f687-4a31-a225-313952ae6789",
 						"exec": [
 							"pm.test(\"Can add airport\", function() {",
-							"   pm.response.to.have.status(200); ",
+							"    ",
+							"   if(pm.info.iteration === pm.info.iterationCount - 1){",
+							"        pm.sendRequest({",
+							"            url: 'http://localhost:8080/ExamensParser/airports.php',",
+							"            method: 'GET',",
+							"        }, function (err, res) {",
+							"            console.log(res);",
+							"            console.log(err);",
+							"        });",
+							"       ",
+							"   }",
 							"   ",
-							"   var hiho = parseInt(pm.environment.get(\"iteration\"));",
-							"   pm.environment.set(\"iteration\", hiho + 1);",
+							"   pm.response.to.have.status(200); ",
 							"});"
 						],
 						"type": "text/javascript"

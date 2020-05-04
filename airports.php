@@ -14,11 +14,23 @@
         die($e->getMessage());
     }
 
+    // Drop Database and reset
+    $commands = file_get_contents('examensarbete.sql');
+    if ($conn->multi_query($commands))
+    {
+        while(($stmt = ($conn->more_results() ? $conn->next_result() : false)) !== FALSE) {
+            if ($stmt = $conn->store_result()) {
+                $stmt ->free();
+            }
+        }
+    }
+
     $conn->set_charset("UTF-8");
 
     // each line into the local $data variable
     $count = 0;
     $flag = true;
+    echo "Parsing airports \n";
     while (($data = fgetcsv($file, 9999, ",")) !== FALSE)
     {
         if($flag) {
